@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FSBF Signature Generator</title>
+    <script>
+        const signatureTemplate = `<body lang=EN-US link=#0563C1 style=tab-interval:36pt;word-wrap:break-word vlink=#954F72><div class=WordSection1><div><p class=MsoNormal><span style=font-family:Aptos,sans-serif;mso-bidi-font-family:Aptos;mso-font-kerning:0;mso-ligatures:none><img height=40 id=_x0000_i1026 src=https://initiatives.fs.de/wp-content/uploads/2023/02/FSBF_Logo_Transparent.png width=40></span><br><span style=font-family:Arial,sans-serif;color:#31417a;mso-font-kerning:0;mso-ligatures:none>[NAME]</span><br><span style=font-size:10pt;font-family:Arial,sans-serif;color:#31417a;mso-font-kerning:0;mso-ligatures:none><em>[POSITION]</em></span><br><br><span style=font-size:10pt;font-family:Arial,sans-serif;color:#1f2e33;mso-font-kerning:0;mso-ligatures:none>--</span><br><br><span style=font-size:10pt;font-family:Arial,sans-serif;color:#222;mso-font-kerning:0;mso-ligatures:none><strong>FS Business Forum</strong></span><br><span style=font-size:10pt;font-family:Arial,sans-serif;color:#222;mso-font-kerning:0;mso-ligatures:none>Be part of the next Event - 15th & 16th Nov. 2024 - and follow us on </span><br><span style=font-family:Aptos,sans-serif;mso-bidi-font-family:Aptos;mso-font-kerning:0;mso-ligatures:none><a href=https://www.instagram.com/fs_businessforum/ target=_blank><span style=font-size:10pt;font-family:Arial,sans-serif>Instagram</span></a> </span><span style=font-size:10pt;font-family:Arial,sans-serif;color:#31417a;mso-font-kerning:0;mso-ligatures:none> &  </span><span style=font-family:Aptos,sans-serif;mso-bidi-font-family:Aptos;mso-font-kerning:0;mso-ligatures:none><a href=https://www.linkedin.com/company/fsbusinessforum/ target=_blank><span style=font-size:10pt;font-family:Arial,sans-serif>LinkedIn</span></a> </span><span style=font-size:10pt;font-family:Arial,sans-serif;color:#1f2e33;mso-font-kerning:0;mso-ligatures:none><span style=background-color:var(--backgroundcolor)> </span></span><br><span style=font-size:10pt;font-family:Arial,sans-serif;color:#1f2e33;mso-font-kerning:0;mso-ligatures:none>M:  </span><span style=font-size:10pt;font-family:Arial,sans-serif;color:#31417a;mso-font-kerning:0;mso-ligatures:none>[MN]</span><br><span style=font-size:10pt;font-family:Arial,sans-serif;color:#1f2e33;mso-font-kerning:0;mso-ligatures:none>E:  </span><span style=font-size:10pt;font-family:Arial,sans-serif;color:#31417a;mso-font-kerning:0;mso-ligatures:none>[MA]</span><br><br><span style=font-size:10pt;font-family:Arial,sans-serif;color:#1f2e33;mso-font-kerning:0;mso-ligatures:none><em>FS Business Forum</em></span><br><span style=font-size:10pt;font-family:Arial,sans-serif;color:#1f2e33;mso-font-kerning:0;mso-ligatures:none><em>Adickesallee 32-34</em></span><br><span style=font-size:10pt;font-family:Arial,sans-serif;color:#1f2e33;mso-font-kerning:0;mso-ligatures:none><em>60322 Frankfurt am Main Germany </em></span><br><span style=font-size:10pt;font-family:Arial,sans-serif;color:#1f2e33;mso-font-kerning:0;mso-ligatures:none><em>Visit: </em></span><span style=font-family:Aptos,sans-serif;mso-bidi-font-family:Aptos;mso-font-kerning:0;mso-ligatures:none><a href=https://fs-businessforum.com/ target=_blank style=font-size:10pt;font-family:Arial,sans-serif;text-decoration:none;text-underline:none><em>fs-businessforum.com</em></a></span></div></div>`;
+
+        function generate() {
+            let fName = document.getElementById("fName").value;
+            let fPosition = document.getElementById("fPosition").value;
+            let fMNumber = document.getElementById("fMNumber").value;
+            let fMAdress = document.getElementById("fMAdress").value;
+            let outCode = document.getElementById("outCode");
+            let outVisual = document.getElementById("outVisual");
+
+            let result = signatureTemplate.replace("[NAME]", fName).replace("[POSITION]", fPosition).replace("[MN]", fMNumber).replace("[MA]", fMAdress)
+
+            outCode.innerText = result
+            outVisual.innerHTML = result 
+        }
+
+        function copyHTML() {
+            let copy = document.getElementById("outCode").innerText;
+            navigator.clipboard.writeText(copy);
+            alert("Copied code to clipboard");
+        }
+
+        function copyVisual() {
+            let contentElement = document.getElementById("outVisual");
+            let range = document.createRange().selectNode(contentElement);
+            let selection = window.getSelection();
+
+            selection.removeAllRanges();
+            selection.addRange(range);
+            document.execCommand("copy");
+            selection.removeAllRanges();
+
+            alert("Copied visual to clipboard");
+        }
+    </script>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <h1>Generate your signature:</h1>
+        <form style="display: grid; grid-template-columns: 1fr 2fr; gap: 0.25rem 1rem; max-width: max-content;">
+            <label for="fName">Your name:</label>
+            <input id="fName" type="text" placeholder="Surname Lastname">
+            <label for="fPosition">Your position:</label>
+            <input id="fPosition" type="text" placeholder="Member of Fictional Department">
+            <label for="fMNumber">Your mobile number:</label>
+            <input id="fMNumber" type="text" placeholder="+49 1234 567890">
+            <label for="fMAdress">Your mail address:</label>
+            <input id="fMAdress" type="text" placeholder="fictional@fs-businessforum.com">
+        </form>
+        <br>
+        <button onclick="generate()">Generate</button>
+    </section>
+    <hr>
+    <section>
+        <h2>HTML Code Below:</h2>
+        <button onclick="copyHTML()">Copy</button>
+        <br>
+        <code id="outCode">...</code>
+    </section>
+    <hr>
+    <section>
+        <h2>Visual (please only resort to this if implementing a HTML Signature is not possible):</h2>
+        <button onclick="copyVisual()">Copy</button>
+        <br>
+        <div id="outVisual"></div>
+    </section>
+</body>
+</html>
