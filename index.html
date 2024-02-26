@@ -35,7 +35,8 @@
 
         function copyVisual() {
             let contentElement = document.getElementById("outVisual");
-            let range = document.createRange().selectNode(contentElement);
+            let range = document.createRange()
+            range.selectNode(contentElement);
             let selection = window.getSelection();
 
             selection.removeAllRanges();
