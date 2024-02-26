@@ -5,12 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FSBF Signature Generator</title>
     <script>
-        const signatureTemplate = fetch('./template.html')
-        .then(response => response.text())
-        .then(data => {
-            console.log(data);
-        })
-        .catch(error => {
+        let signatureTemplate = "";
+        
+        fetch('./template.html').then(response => response.text()).then(data => {
+            signatureTemplate = data
+        }).catch(error => {
             console.error('Error:', error);
         });
 
@@ -22,10 +21,7 @@
             let outCode = document.getElementById("outCode");
             let outVisual = document.getElementById("outVisual");
 
-            let result = signatureTemplate.replace("[NAME]", fName)
-                                          .replace("[POSITION]", fPosition)
-                                          .replace("[MN]", fMNumber)
-                                          .replace("[MA]", fMAdress);
+            let result = signatureTemplate.replace("[NAME]", fName).replace("[POSITION]", fPosition).replace("[MN]", fMNumber).replace("[MA]", fMAdress);
 
             outCode.innerText = result
             outVisual.innerHTML = result 
