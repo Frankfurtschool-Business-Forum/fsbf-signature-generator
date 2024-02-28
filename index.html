@@ -8,7 +8,7 @@
         let signatureTemplate = "";
         
         fetch('./template.html').then(response => response.text()).then(data => {
-            signatureTemplate = data
+            signatureTemplate = data;
         }).catch(error => {
             console.error('Error:', error);
         });
@@ -23,8 +23,8 @@
 
             let result = signatureTemplate.replace("[NAME]", fName).replace("[POSITION]", fPosition).replace("[MN]", fMNumber).replace("[MA]", fMAdress);
 
-            outCode.innerText = result
-            outVisual.innerHTML = result 
+            outCode.innerText = result;
+            outVisual.innerHTML = result;
         }
 
         function copyHTML() {
@@ -35,7 +35,7 @@
 
         function copyVisual() {
             let contentElement = document.getElementById("outVisual");
-            let range = document.createRange()
+            let range = document.createRange();
             range.selectNode(contentElement);
             let selection = window.getSelection();
 
@@ -70,18 +70,20 @@
         <button onclick="generate()">Generate</button>
     </section>
     <hr>
-    <section>
-        <h2>HTML Code Below:</h2>
-        <button onclick="copyHTML()">Copy</button>
-        <br>
-        <code id="outCode"></code>
-    </section>
-    <hr>
-    <section>
-        <h2>Visual (please only resort to this if implementing a HTML Signature is not possible):</h2>
-        <button onclick="copyVisual()">Copy</button>
-        <br>
-        <div id="outVisual"></div>
-    </section>
+    <div style="display: grid; grid-template-columns: 1fr 1px 1fr; column-gap: 2rem;">
+        <section>
+            <h2>HTML Code Below:</h2>
+            <button onclick="copyHTML()">Copy</button>
+            <br>
+            <code id="outCode"></code>
+        </section>
+        <div style="background-color: #00000038;"></div>
+        <section>
+            <h2>Visual (please only resort to this if implementing a HTML Signature is not possible):</h2>
+            <button onclick="copyVisual()">Copy</button>
+            <br>
+            <div id="outVisual"></div>
+        </section>
+    </div>
 </body>
 </html>
