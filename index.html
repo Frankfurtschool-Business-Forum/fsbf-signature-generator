@@ -25,6 +25,10 @@
 
             outCode.innerText = result;
             outVisual.innerHTML = result;
+
+            [...document.getElementsByTagName("button")].forEach(element => {
+                element.disabled = false;
+            });
         }
 
         function copyHTML() {
@@ -73,14 +77,14 @@
     <div style="display: grid; grid-template-columns: 1fr 1px 1fr; column-gap: 2rem;">
         <section>
             <h2>HTML Code Below:</h2>
-            <button onclick="copyHTML()">Copy</button>
+            <button disabled onclick="copyHTML()">Copy</button>
             <br>
             <code id="outCode"></code>
         </section>
         <div style="background-color: #00000038;"></div>
         <section>
             <h2>Visual (please only resort to this if implementing a HTML Signature is not possible):</h2>
-            <button onclick="copyVisual()">Copy</button>
+            <button disabled onclick="copyVisual()">Copy</button>
             <br>
             <div id="outVisual"></div>
         </section>
