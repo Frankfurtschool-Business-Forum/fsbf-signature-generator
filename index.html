@@ -9,6 +9,7 @@
         
         fetch('./template.html').then(response => response.text()).then(data => {
             signatureTemplate = data;
+            console.log(signatureTemplate.includes("github.com"))
         }).catch(error => {
             console.error('Error:', error);
         });
